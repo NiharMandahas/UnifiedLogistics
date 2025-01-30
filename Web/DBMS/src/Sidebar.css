@@ -1,0 +1,68 @@
+.Sidebar-button {
+    margin-top: 2vh;
+    background-color: #d4f6ff;
+    width: 3vw;
+    height: 5vh;
+    text-align: center;
+    background-color: #75a6c9;
+    border-radius: 20px;
+    transition: max-width 1s ease-in-out;
+}
+
+body{
+    background-color: #f4f4f9;
+}
+.Sidebar-button.expanded {
+    width: 12vw;
+    height: 5vh;
+    border-radius: 0px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px; */
+}
+
+#button {
+    margin-top: 1.5vh;
+    color: #000000;
+    font-weight: 600;
+}
+
+#button:hover {
+    cursor: pointer;
+}
+
+.Sidebar-content {
+    margin-left: 1vw;
+    margin-top: 5vh;
+    border: 5px solid #d4f6ff;
+    margin-right: 10px;
+    border-radius: 10px;
+    background-color: #d4f6ff;
+    text-align: center;
+}
+
+.Sidebar-main {
+    display: flex;
+    flex-direction: column;
+    background-color: #75a6c9;
+    max-width: 12vw;
+    gap: 20px;
+    height: 75vh;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transform: translateX(-100%);
+    transition: transform 0.5s ease-in-out;
+}
+
+.Sidebar-main.open {
+    transform: translateX(0);
+}
+
+.Sidebar-main.closed {
+    transform: translateX(-120%);
+}
+
+.Sidebar-content:hover {
+    background-color: #ffffff;
+    border: 5px solid #ffffff;
+    cursor: pointer;
+}

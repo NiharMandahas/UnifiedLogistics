@@ -1,0 +1,135 @@
+.TextField {
+    border: 3px solid #18173a;
+    border-radius: 5px;
+    width: 70vw;
+    background-color: white(202, 202, 202);
+    margin-top: 4vh;
+    margin-left: 4vw;
+}
+
+.TextField-mode-toggle {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.mode-button {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: white;
+    border: 2px solid #4689fc;
+    color: #4689fc;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.mode-button.active {
+    background-color: #4689fc;
+    color: white;
+}
+
+.mode-button:hover {
+    background-color: #90c0e3;
+    border-color: #90c0e3;
+    color: white;
+}
+
+/* Rest of your existing CSS remains the same */
+.TextField-H1{
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #002855;
+    font-size: 36px;
+}
+
+.TextField-input{
+    border-radius: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #002855;
+    width: 40vw;
+    border: 1px solid #18173a;
+}
+
+.TextField-output{
+    border-radius: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #002855;
+    width: 50vw;
+    height: 30px;
+    border: 2px solid white;
+    background-color: white;
+}
+
+.TextField-inputdiv{
+    display: flex;
+    flex-direction: column;
+    align-items:flex-end;
+    margin-right: 2vw;
+    margin-bottom: 1vh;
+}
+
+.TextField-Previous{
+    margin-left: 2vw;
+    color: #4689fc;
+}
+
+.TextField-PrevResults{
+    margin-top: -3.5vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.TextField-PrevResults-Button{
+    margin-top: 3vh;
+    margin-left: 2vh;
+    height: 10px;
+}
+
+#TextField-PrevResults-Button, #TextField-Execute-Button, #TextField-Generate-Button{
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #4689fc;
+    border: 2px solid #4689fc;
+    color: white;
+}
+
+#TextField-PrevResults-Button:hover, #TextField-Execute-Button:hover, #TextField-Generate-Button:hover{
+    background-color: #90c0e3;
+    border: 2px solid #90c0e3;
+}
+
+.TextField-p{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #026b82;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.TextField-H4{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #026b82;
+    font-size: 16px;
+    font-weight: strong;
+}
+
+.TextField-H3{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #026b82;
+    font-size: 20px;
+    font-weight: strong;
+}
+
+.TextField-H2{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #026b82;
+    font-size: 25px;
+    font-weight: strong;
+}
+
+.TextField-sqlquery{
+    margin-left: 2vw;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3vh;
+}

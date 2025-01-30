@@ -1,0 +1,67 @@
+/* General container for the header */
+.header-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #75a6c9; /* Primary dark blue */
+  padding: 25px 0;
+  margin-left: -0.8vw;
+  margin-right: -0.6vw;
+  margin-top: -1.2vh;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  position: sticky;
+  z-index: 1000;
+}
+
+/* Content container to center title and button */
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 16px;
+}
+
+/* Title styling */
+.header-title {
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Button styling */
+.header-button {
+  background-color: #2563eb; /* Vibrant blue */
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: none; /* Remove uppercase */
+  transition: all 0.3s ease; /* Smooth animations */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+/* Hover effect for the button */
+.header-button:hover {
+  background-color: #1d4ed8; /* Slightly darker blue */
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Enhance shadow */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .header-title {
+    font-size: 20px;
+    text-align: center;
+  }
+}

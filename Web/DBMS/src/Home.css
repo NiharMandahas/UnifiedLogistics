@@ -1,0 +1,29 @@
+.Home-main{
+    display: flex;
+    gap: 2vh;
+}
+body{
+    background-color: white;
+}
+.Home-img{
+    width: 40vw;
+    height: 70vh;
+    margin-left: 30vw;
+    margin-top: 5vh;
+}
+.Home-button{
+    margin-left: 48vw;
+}
+.button{
+    max-width: 15vw;
+    margin-top: 5vh;
+    font-size: 2vw;
+    color: white;
+    background-color: black;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+.button:hover{
+    background-color: rgb(55, 52, 52);
+    cursor: pointer;
+}
