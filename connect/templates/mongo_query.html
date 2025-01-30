@@ -1,0 +1,44 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MongoDB Query Executor</title>
+</head>
+<body>
+    <h1>MongoDB Query Executor</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <label for="collection">Select Collection:</label>
+        <select name="collection" id="collection">
+            <option value="Company_Data">Company Data</option>
+            <option value="Customer_Data">Customer Data</option>
+            <option value="Orders_Data">Order Data</option>
+            <option value="Package_Data">Package Data</option>
+            <option value="Warehouse_Data">Warehouse Data</option>
+            <option value="Vehicle_Data">Vehicle Data</option>
+            <option value="Expects_From_Data">Expects From Data</option>
+
+            <!-- Add more collections as needed -->
+        </select>
+        <br>
+        <textarea name="query" rows="5" cols="60" placeholder="Enter your MongoDB query here...">{% if query %}{{ query }}{% endif %}</textarea>
+        <br>
+        <button type="submit">Execute Query</button>
+    </form>
+
+    {% if error_message %}
+        <h3 style="color: red;">Error: {{ error_message }}</h3>
+    {% endif %}
+
+    {% if mongo_result %}
+        <h3>Query Result:</h3>
+        <pre>{{ mongo_result|safe }}</pre>
+    {% endif %}
+</body>
+</html>

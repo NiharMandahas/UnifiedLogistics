@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Text Editor</title>
+</head>
+<body>
+    <h1>Text Editor</h1>
+    
+    <!-- Text submission form -->
+    <form method="POST">
+        {% csrf_token %}
+        <textarea name="text_content" rows="5" cols="40" placeholder="Enter your text here"></textarea><br>
+        <button type="submit">Submit</button>
+    </form>
+    
+    <!-- Display the generated SQL query if available -->
+    {% if sql_query %}
+        <h2>Generated SQL Query:</h2>
+        <p>{{ sql_query }}</p>
+    {% endif %}
+</body>
+</html>

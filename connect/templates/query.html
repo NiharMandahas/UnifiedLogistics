@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Query Executor</title>
+</head>
+<body>
+    <h1>Enter SQL Query</h1>
+    <form method="post">
+        {% csrf_token %}
+        <textarea name="sql_query" rows="5" cols="50" placeholder="Enter your SQL query here..."></textarea><br>
+        <button type="submit">Run Query</button>
+    </form>
+
+    {% if columns and rows %}
+        <h2>Query Results</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    {% for column in columns %}
+                        <th>{{ column }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in rows %}
+                    <tr>
+                        {% for cell in row %}
+                            <td>{{ cell }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</body>
+</html>
