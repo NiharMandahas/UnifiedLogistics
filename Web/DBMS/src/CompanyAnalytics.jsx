@@ -67,7 +67,6 @@ const CompanyAnalytics = () => {
       }
     } catch (error) {
       console.error('Error fetching companies:', error);
-      setError('Failed to load companies. Please try again later.');
       setCompanies([]);
     } finally {
       setLoading(false);
@@ -85,7 +84,6 @@ const CompanyAnalytics = () => {
       setSelectedCompany(data);
     } catch (error) {
       console.error('Error fetching company details:', error);
-      setError('Failed to load company details. Please try again later.');
     }
   };
 

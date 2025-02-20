@@ -10,7 +10,7 @@ import ProtectedRoute from './ProtectedRoute';
 import Anal from './Anal';
 import GetOrder from './GetOrder'
 import Insert from './Insert';
-
+import Display from './Display'
 function App() {
   const location = useLocation();
 
@@ -27,6 +27,7 @@ function App() {
             <Route path='/LoginPage' element={<LoginPage/>}/>
             <Route path='/GetOrder' element={<GetOrder/>}/>
             <Route path='/update' element={<Insert/>}/>
+            <Route path='/display' element={<Display/>}/>
             </Routes>
                 </CSSTransition>
             </TransitionGroup>

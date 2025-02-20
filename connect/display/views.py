@@ -16,17 +16,33 @@ def get_table_data(request, table_name):
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
 
+
+
+
 @csrf_exempt
 def update_table_row(request, table_name, row_id):
     if request.method == 'PUT':
         try:
             data = json.loads(request.body)
+
+            # Determine the correct ID field based on the table
+            id_mapping = {
+                'CompanyDetails': 'Company_ID',
+                'CustomerDetails': 'Customer_ID',
+                'Vehicle': 'Vehicle_ID',
+                'Warehouse': 'Warehouse_ID',
+                'Orders': 'Order_ID',
+                'ProductDetails': 'Order_ID'
+            }
+            id_field = id_mapping.get(table_name, 'id')  # Default to 'id'
+
+            # Build SQL query dynamically
             set_clause = ", ".join([f"{k} = %s" for k in data.keys()])
             values = list(data.values())
-            
+
             with connection.cursor() as cursor:
                 cursor.execute(
-                    f"UPDATE {table_name} SET {set_clause} WHERE id = %s",
+                    f"UPDATE {table_name} SET {set_clause} WHERE {id_field} = %s",
                     values + [row_id]
                 )
             return JsonResponse({"status": "success"})

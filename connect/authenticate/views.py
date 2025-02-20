@@ -1,48 +1,47 @@
-import json
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_http_methods
-import os
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.decorators import api_view
+from django.utils import timezone
+from .models import User
+from .serializers import RegisterSerializer, LoginSerializer
 
-USERS_FILE = 'users.json'
+@api_view(['POST'])
+def register_user(request):
+    serializer = RegisterSerializer(data=request.data)
+    if serializer.is_valid():
+        user = serializer.save()
+        return Response({
+            "message": "User registered successfully",
+            "email": user.email,
+            "id": str(user.id)
+        }, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-def load_users():
-    if os.path.exists(USERS_FILE):
-        with open(USERS_FILE, 'r') as f:
-            return json.load(f)
-    return {}
-
-def save_users(users):
-    with open(USERS_FILE, 'w') as f:
-        json.dump(users, f)
-
-@csrf_exempt
-@require_http_methods(["POST"])
-def register(request):
-    data = json.loads(request.body)
-    username = data.get('username')
-    password = data.get('password')
-    
-    users = load_users()
-    
-    if username in users:
-        return JsonResponse({'error': 'Username already exists'}, status=400)
-    
-    users[username] = password
-    save_users(users)
-    
-    return JsonResponse({'message': 'Registration successful'})
-
-@csrf_exempt
-@require_http_methods(["POST"])
-def login(request):
-    data = json.loads(request.body)
-    username = data.get('username')
-    password = data.get('password')
-    
-    users = load_users()
-    
-    if username in users and users[username] == password:
-        return JsonResponse({'message': 'Login successful', 'username': username})
-    
-    return JsonResponse({'error': 'Invalid credentials'}, status=401)
+class LoginView(APIView):
+    def post(self, request):
+        serializer = LoginSerializer(data=request.data)
+        if serializer.is_valid():
+            try:
+                user = User.objects.get(email=serializer.validated_data['email'])
+                
+                if user.check_password(serializer.validated_data['password']):
+                    user.last_login = timezone.now()
+                    user.save()
+                    
+                    return Response({
+                        'message': 'Login successful',
+                        'user': {
+                            'id': str(user.id),
+                            'email': user.email,
+                            'name': user.name
+                        }
+                    }, status=status.HTTP_200_OK)
+            except User.DoesNotExist:
+                pass
+            
+            return Response({
+                'error': 'Invalid credentials'
+            }, status=status.HTTP_401_UNAUTHORIZED)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

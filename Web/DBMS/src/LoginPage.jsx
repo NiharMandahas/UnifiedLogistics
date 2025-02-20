@@ -6,18 +6,27 @@ import './LoginPage.css';
 
 const LoginPage = () => {
   const [isLogin, setIsLogin] = useState(true);
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
-  const { login, isLoggedIn } = useAuth(); // Get login function from AuthContext
+  const { login } = useAuth(); // Get login function from AuthContext
 
   // Form validation logic
   const validateForm = () => {
+    if (!email.includes('@')) {
+      setError('Invalid email format');
+      return false;
+    }
     if (!isLogin) {
+      if (!name.trim()) {
+        setError('Name is required');
+        return false;
+      }
       if (password !== confirmPassword) {
         setError('Passwords do not match');
         return false;
@@ -41,24 +50,28 @@ const LoginPage = () => {
 
     try {
       if (isLogin) {
-        const response = await axios.post('http://localhost:8000/api/login/', { username, password });
+        const response = await axios.post('http://localhost:8000/api/login/', { email, password });
         
-        // Set user info in localStorage and context
-        localStorage.setItem('username', response.data.username);
-        login(response.data.username); // Update context state with the logged-in user
-        
+        // Extract user info from response
+        const { id, name, email: userEmail } = response.data.user;
+
+        // Store user info in localStorage
+        localStorage.setItem('user', JSON.stringify({ id, name, email: userEmail }));
+        login(userEmail); // Update context state with the logged-in user
+
         // Redirect to SQL page
         navigate('/SQL');
       } else {
-        await axios.post('http://localhost:8000/api/register/', { username, password });
+        await axios.post('http://localhost:8000/api/register/', { email, name, password });
         setIsLogin(true);
         setError('Registration successful! Please login.');
-        setUsername('');
+        setEmail('');
+        setName('');
         setPassword('');
         setConfirmPassword('');
       }
     } catch (err) {
-      setError(isLogin ? 'Invalid username or password' : 'Username already exists');
+      setError(isLogin ? 'Invalid email or password' : 'Email already exists');
       console.error(err);
     } finally {
       setIsLoading(false);
@@ -69,7 +82,8 @@ const LoginPage = () => {
   const handleToggleForm = () => {
     setIsLogin(!isLogin);
     setError('');
-    setUsername('');
+    setEmail('');
+    setName('');
     setPassword('');
     setConfirmPassword('');
   };
@@ -94,19 +108,34 @@ const LoginPage = () => {
 
         <form onSubmit={handleSubmit} className="login-form">
           <div className="form-group">
-            <label className="input-label">Username</label>
+            <label className="input-label">Email</label>
             <div className="input-container">
               <input
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="login-input"
                 required
-                minLength={3}
               />
-              <span className="input-icon">👤</span>
+              <span className="input-icon">📧</span>
             </div>
           </div>
+
+          {!isLogin && (
+            <div className="form-group">
+              <label className="input-label">Name</label>
+              <div className="input-container">
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="login-input"
+                  required
+                />
+                <span className="input-icon">👤</span>
+              </div>
+            </div>
+          )}
 
           <div className="form-group">
             <label className="input-label">Password</label>

@@ -25,9 +25,9 @@ def search_order(request):
                         c.Name AS Company_Name,
                         c.Rating
                     FROM 
-                        Orders_Data AS o
+                        `Orders` AS o
                     JOIN 
-                        Company_Data AS c
+                        CompanyDetails AS c
                     ON 
                         o.Company_ID = c.Company_ID
                     WHERE 

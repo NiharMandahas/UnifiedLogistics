@@ -7,6 +7,8 @@ import { PiFileSqlFill } from "react-icons/pi";
 import { FaHome } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { FaEye } from "react-icons/fa";
+import { IoIosAddCircleOutline } from "react-icons/io";
+import { CiViewTable } from "react-icons/ci";
 
 export default function Sidebar() {
   const navigate = useNavigate();
@@ -35,6 +37,12 @@ export default function Sidebar() {
         </div>
         <div className="Sidebar-content" id="sql" onClick={() => navigate("/GetOrder")}>
           <FaEye />&ensp;&ensp;Order Status
+        </div>
+        <div className="Sidebar-content" id="sql" onClick={() => navigate("/update")}>
+          <IoIosAddCircleOutline />&ensp;&ensp;Add Values
+        </div>
+        <div className="Sidebar-content" id="sql" onClick={() => navigate("/display")}>
+          <CiViewTable />&ensp;&ensp;View Database
         </div>
       </div>
     </>

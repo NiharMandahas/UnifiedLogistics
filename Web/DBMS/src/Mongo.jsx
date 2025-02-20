@@ -13,7 +13,7 @@ function Mongo() {
 
     try {
       // Send the query to the backend
-      const response = await axios.post("http://localhost:8000/api/mongo_query/", {
+      const response = await axios.post("http://localhost:8000/user/nosql/mongo_query/", {
         collection,
         query,
       });

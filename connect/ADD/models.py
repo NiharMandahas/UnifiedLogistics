@@ -8,6 +8,7 @@ class CompanyDetails(models.Model):
     ModeOfDelivery = models.CharField(max_length=255)
 
     class Meta:
+        managed = False
         db_table = 'CompanyDetails'
 
 class CustomerDetails(models.Model):
@@ -20,6 +21,7 @@ class CustomerDetails(models.Model):
     contact = models.CharField(max_length=255)
 
     class Meta:
+        managed = False
         db_table = 'CustomerDetails'
 
 class ExpectsFrom(models.Model):
@@ -28,6 +30,7 @@ class ExpectsFrom(models.Model):
     payment_method = models.CharField(max_length=255)
 
     class Meta:
+        managed = False
         db_table = 'ExpectsFrom'
 
 class Vehicle(models.Model):
@@ -36,6 +39,7 @@ class Vehicle(models.Model):
     type = models.CharField(max_length=255)
 
     class Meta:
+        managed = False
         db_table = 'Vehicle'
 
 class Warehouse(models.Model):
@@ -46,6 +50,7 @@ class Warehouse(models.Model):
     address = models.CharField(max_length=355)
 
     class Meta:
+        managed = False
         db_table = 'Warehouse'
 
 class Orders(models.Model):
@@ -60,6 +65,7 @@ class Orders(models.Model):
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
 
     class Meta:
+        managed = False
         db_table = 'Orders'
 
 class ProductDetails(models.Model):
@@ -70,5 +76,6 @@ class ProductDetails(models.Model):
     price = models.IntegerField()
 
     class Meta:
+        managed = False
         db_table = 'ProductDetails'
         unique_together = ('order', 'product_name')

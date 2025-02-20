@@ -10,7 +10,7 @@ def text_editor_view(request):
         data = json.loads(request.body)
         text_content = data.get('text_content', '')
 
-        model_path = "/Users/Dell/Desktop/DBMS_data/LAB/mongoDB/connect/saved_model"
+        model_path = "/Users/Dell/Desktop/DBMS_LAB/App/connect/saved_model"
         tokenizer = BartTokenizer.from_pretrained(model_path)
         model = BartForConditionalGeneration.from_pretrained(model_path, early_stopping=True)
 
