@@ -8,7 +8,7 @@ The Unified Logistic Management Platform is a comprehensive system designed to s
 ## Data
 
 ## ER-Diagram
-<img src="https://github.com/NiharMandahas/UnifiedLogistics/blob/main/visuals/Screenshot%202025-03-17%20at%2010.10.17%E2%80%AFPM.png" height=60 width=40>
+<img src="https://github.com/NiharMandahas/UnifiedLogistics/blob/main/visuals/Screenshot%202025-03-17%20at%2010.10.17%E2%80%AFPM.png" height=600 width=400>
 
 ## Data Flow Diagram
 
