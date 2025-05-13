@@ -34,13 +34,7 @@ UnifiedLogistics is a comprehensive logistics management platform designed to op
 - **Forecasting**: Predictive analytics for demand planning
 - **Cost Analysis**: Detailed breakdown of logistics costs and opportunities for optimization
 
-## 🚀 Getting Started
 
-### Prerequisites
-- Node.js (v14 or higher)
-- MongoDB (v4.4 or higher)
-- Redis (optional, for caching)
-- Docker (optional, for containerized deployment)
 
 ### Installation
 
@@ -50,63 +44,64 @@ UnifiedLogistics is a comprehensive logistics management platform designed to op
    cd UnifiedLogistics
    ```
 
-2. Install dependencies:
+2. Set up a virtual environment:
    ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. Run database migrations:
+   ```bash
+   python manage.py migrate
+   ```
+
+5. Create a superuser (admin):
+   ```bash
+   python manage.py createsuperuser
+   ```
+
+6. Start the development server:
+   ```bash
+   python manage.py runserver
+   ```
+
+7. For the frontend (React):
+   ```bash
+   cd frontend
    npm install
+   npm start
    ```
 
-3. Set up environment variables:
-   ```bash
-   cp .env.example .env
-   # Edit .env with your configuration details
-   ```
 
-4. Start the development server:
-   ```bash
-   npm run dev
-   ```
-
-5. Build for production:
-   ```bash
-   npm run build
-   ```
-
-## 🏗️ Project Structure
-
-```
-UnifiedLogistics/
-├── client/                 # Frontend React application
-│   ├── public/             # Static assets
-│   └── src/                # React source files
-├── server/                 # Backend Node.js/Express application
-│   ├── controllers/        # Route controllers
-│   ├── models/             # Database models
-│   ├── routes/             # API routes
-│   └── utils/              # Utility functions
-├── config/                 # Configuration files
-├── scripts/                # Build and deployment scripts
-└── docs/                   # Documentation
-```
 
 ## 📋 API Documentation
 
-The API documentation is available at `/api/docs` when running the server locally. For detailed information about available endpoints and request/response formats, please refer to the API documentation.
+The API documentation is available at `/api/docs/` when running the server locally. For Django REST Framework's browsable API interface, visit `/api/` endpoints directly in your browser. For detailed information about available endpoints and request/response formats, please refer to the API documentation.
 
 ## 🔧 Configuration
 
-UnifiedLogistics can be configured through environment variables. See `.env.example` for available configuration options.
+UnifiedLogistics can be configured through environment variables in your `.env` file. See `.env.example` for available configuration options.
+
+For Django-specific settings, refer to `backend/settings.py` and related configuration files.
 
 ## 🧪 Testing
 
 ```bash
-# Run unit tests
-npm run test
+# Run Django tests
+python manage.py test
 
-# Run integration tests
-npm run test:integration
+# Run tests with coverage
+coverage run --source='.' manage.py test
+coverage report
 
-# Generate test coverage report
-npm run test:coverage
+# Run frontend tests
+cd frontend
+npm test
 ```
 
 ## 🤝 Contributing
@@ -123,21 +118,9 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 📊 Roadmap
-
-- **Q2 2023**: Enhanced analytics dashboard with predictive capabilities
-- **Q3 2023**: Mobile application for warehouse floor management
-- **Q4 2023**: Blockchain integration for supply chain traceability
-- **Q1 2024**: Advanced AI features for demand forecasting
-
-## 📞 Support
-
-For support, please email support@unifiedlogistics.com or open an issue on this repository.
-
 ## 🙏 Acknowledgements
 
-- [Express.js](https://expressjs.com/)
+- [Django](https://www.djangoproject.com/)
+- [Django REST Framework](https://www.django-rest-framework.org/)
 - [React](https://reactjs.org/)
-- [MongoDB](https://www.mongodb.com/)
-- [Redux](https://redux.js.org/)
-- [Material-UI](https://material-ui.com/)
+- [MySQL](https://www.mysql.com/)
